@@ -5,6 +5,15 @@
     <link>https://adrianfernandezalv.github.io/portent-releases/appcast.xml</link>
     <language>en</language>
     <item>
+      <title>0.1.1</title>
+      <pubDate>Fri, 16 Oct 2026 11:45:56 +0000</pubDate>
+      <sparkle:version>24</sparkle:version>
+      <sparkle:shortVersionString>0.1.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>Install script works with macOS&#x27;s built-in bash</li><li>Homebrew cask updated for current Homebrew</li><li>Release notes now written for people, not taken from commits</li></ul>]]></description>
+      <enclosure url="https://github.com/adrianfernandezalv/portent-releases/releases/download/v0.1.1/Portent-0.1.1.dmg" length="2976037" type="application/octet-stream" sparkle:edSignature="SbA5mJq3qLK6BC+RgQik+aaFguBj5c33fDx8+BiH9X9mD57NFxffLsPnNK+4G0PEGH3kjDVZ1cmr3zvNuKwwAg=="/>
+    </item>
+    <item>
       <title>0.1.0</title>
       <pubDate>Fri, 16 Oct 2026 11:33:46 +0000</pubDate>
       <sparkle:version>22</sparkle:version>
