@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>portent: dev servers, agent sessions and Claude usage in your menu bar</title>
+<meta name="description" content="A macOS menu bar app for developers running AI coding agents: Claude plan usage per account, every dev server and who started it, and every live session.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0e0f12" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta property="og:title" content="portent">
+<meta property="og:description" content="Dev servers, agent sessions and Claude plan usage, in the macOS menu bar.">
+<meta property="og:image" content="https://adrianfernandezalv.github.io/portent-releases/assets/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/icon-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/icon-256.png">
+<link rel="preload" href="assets/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#" aria-label="portent home">
+      <img src="assets/icon-64.png" width="28" height="28" alt="">
+      <span>portent</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+      <a class="button small" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap hero-head">
+      <div class="hero-copy">
+        <!-- release: rewritten by the app repo's release workflow (scripts/release/landing.py) -->
+        <a class="pill" data-release="0.2.0" href="https://github.com/adrianfernandezalv/portent-releases/releases/tag/v0.2.0">
+          <img src="assets/icon-64.png" width="22" height="22" alt="">
+          <span class="pill-tag">New in 0.2.0</span>
+          <span class="pill-text">Floating window, QR codes for your phone</span>
+          <span class="pill-arrow" aria-hidden="true">→</span>
+        </a>
+        <!-- /release -->
+        <h1>See what your coding agents left running.</h1>
+        <p class="lede">portent lives in the macOS menu bar: Claude plan usage per account, every dev server with who started it, and every live agent session, a click away.</p>
+      </div>
+      <div class="hero-cta">
+        <div class="cta">
+          <a class="button primary" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download for Mac</a>
+          <p class="meta"><span data-version>v0.2.0</span> · macOS 14+ · Apple silicon and Intel · free</p>
+        </div>
+        <div class="term" data-tabs>
+          <div class="term-bar" role="tablist" aria-label="Install from the terminal">
+            <button type="button" role="tab" aria-selected="true" aria-controls="hero-script" id="hero-script-tab">Install script</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="hero-brew" id="hero-brew-tab" tabindex="-1">Homebrew</button>
+          </div>
+          <div class="term-panel" role="tabpanel" id="hero-script" aria-labelledby="hero-script-tab">
+            <div class="term-line">
+              <span class="prompt" aria-hidden="true">$</span>
+              <code>curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash</code>
+              <button class="copy" type="button" data-copy="curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash">Copy</button>
+            </div>
+          </div>
+          <div class="term-panel" role="tabpanel" id="hero-brew" aria-labelledby="hero-brew-tab" hidden>
+            <div class="term-line">
+              <span class="prompt" aria-hidden="true">$</span>
+              <code>brew install adrianfernandezalv/tap/portent</code>
+              <button class="copy" type="button" data-copy="brew install adrianfernandezalv/tap/portent">Copy</button>
+            </div>
+          </div>
+        </div>
+        <p class="privacy">No analytics, no account. portent only talks to Claude and this site.</p>
+      </div>
+    </div>
+
+    <div class="wrap hero-stage">
+      <ul class="callouts left" aria-hidden="true">
+        <li style="--y: 10.5%; --c: var(--orange)"><span class="ct"><strong>Plan usage per account</strong><span>Alerts at 75% and 90%</span></span></li>
+        <li style="--y: 20.5%; --c: var(--red)"><span class="ct"><strong>Servers left behind</strong><span>Stop what ended sessions left running</span></span></li>
+        <li style="--y: 38%; --c: var(--claude)"><span class="ct"><strong>Who started each server</strong><span>Claude Code, Claude Desktop, Docker or you</span></span></li>
+      </ul>
+      <figure class="hero-media glow" style="--c: var(--blue)">
+        <video muted loop playsinline autoplay preload="auto" poster="assets/hero.webp" data-poster-light="assets/hero-light.webp" width="880" height="1520" data-src-light="assets/hero-light.mp4" data-autoplay>
+          <source src="assets/hero.mp4" type="video/mp4">
+        </video>
+        <figcaption class="sr-only">The portent panel under its menu bar icon: plan usage for three Claude accounts, six dev servers with their health and who started them, and live sessions grouped by account changing state.</figcaption>
+      </figure>
+      <ul class="callouts right" aria-hidden="true">
+        <li style="--y: 32%; --c: var(--green)"><span class="ct"><strong>Health per port</strong><span>Green answers, orange is booting or hung</span></span></li>
+        <li style="--y: 60%; --c: var(--blue)"><span class="ct"><strong>Live sessions</strong><span>Working, needs you, your turn, context used</span></span></li>
+        <li style="--y: 88%; --c: var(--purple)"><span class="ct"><strong>Detach anytime</strong><span>Pull the panel into its own window</span></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div id="features" class="features">
+
+  <section class="feature wide" style="--c: var(--orange)" aria-labelledby="f-usage">
+    <div class="wrap">
+      <div class="feature-copy">
+        <p class="kicker">Plan usage</p>
+        <h2 id="f-usage">Know where every Claude account stands.</h2>
+        <p>Session and weekly limits for each account and organization you use, side by side. portent tells you at 75% and 90%, and again when a heavily used window resets, so you can switch accounts before you hit the wall.</p>
+      </div>
+      <figure class="media glow" style="--gx: 26%; --gw: 26%; --gh: 60%">
+        <video muted loop playsinline preload="none" poster="assets/usage.webp" data-poster-light="assets/usage-light.webp" style="--focus: 16%" width="1200" height="500" data-src-light="assets/usage-light.mp4" data-autoplay>
+          <source src="assets/usage.mp4" type="video/mp4">
+        </video>
+        <figcaption class="sr-only">Work · Acme crosses 75% and a notification arrives; Personal crosses 90%, then its session limit resets.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="feature split" style="--c: var(--green)" aria-labelledby="f-servers">
+    <div class="wrap">
+      <div class="feature-copy">
+        <p class="kicker">Dev servers</p>
+        <h2 id="f-servers">Every dev server, and who started it.</h2>
+        <p>Each port gets a health dot, its branch and its origin: a Claude Code or Claude Desktop session, Docker, or started by you.</p>
+        <ul class="points">
+          <li>Stop one port, a whole project, or everything an ended session left behind.</li>
+          <li>Protect the servers that must stay up; portent won't stop them.</li>
+          <li>Relaunch recently closed projects with the command they ran.</li>
+        </ul>
+      </div>
+      <figure class="media tall glow">
+        <video muted loop playsinline preload="none" poster="assets/servers.webp" data-poster-light="assets/servers-light.webp" width="880" height="1480" data-src-light="assets/servers-light.mp4" data-autoplay>
+          <source src="assets/servers.mp4" type="video/mp4">
+        </video>
+        <figcaption class="sr-only">storefront finishes booting; orders-service is stopped, then started again from Recently closed.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="feature sessions" style="--c: var(--blue)" aria-labelledby="f-sessions">
+    <div class="wrap session-row">
+      <figure class="media detail glow">
+        <video muted loop playsinline preload="none" poster="assets/sessions.webp" data-poster-light="assets/sessions-light.webp" width="1100" height="750" data-src-light="assets/sessions-light.mp4" data-autoplay>
+          <source src="assets/sessions.mp4" type="video/mp4">
+        </video>
+        <figcaption class="sr-only">Sessions grouped by account move between working, needs you and your turn.</figcaption>
+      </figure>
+      <div class="feature-copy">
+        <p class="kicker">Agent sessions</p>
+        <h2 id="f-sessions">Which session is working, and which one needs you.</h2>
+        <p>Live Claude Code and Claude Desktop sessions, grouped by account: working, needs you, or your turn. A bar shows how full each context window is, next to the servers that session started.</p>
+      </div>
+    </div>
+    <div class="wrap notify-row" style="--c: var(--purple)">
+      <div class="feature-copy">
+        <p class="kicker">Notifications</p>
+        <h3>Back to the right session in one click.</h3>
+        <p>A notification when a session is waiting for a permission or an answer, or finishes a long turn. Click it and that exact session opens in Claude Desktop.</p>
+      </div>
+      <figure class="media glow" style="--gx: 30%; --gw: 34%; --gh: 50%">
+        <video muted loop playsinline preload="none" poster="assets/notify.webp" data-poster-light="assets/notify-light.webp" style="--focus: 70%" width="1248" height="992" data-src-light="assets/notify-light.mp4" data-autoplay>
+          <source src="assets/notify.mp4" type="video/mp4">
+        </video>
+        <figcaption class="sr-only">ACME-482 asks for a permission and a notification arrives; after a click, recipe-box finishes its turn.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="feature extras" style="--c: var(--teal)" aria-labelledby="f-more">
+    <div class="wrap">
+      <div class="feature-copy">
+        <p class="kicker">And more</p>
+        <h2 id="f-more">Made for busy days.</h2>
+      </div>
+      <div class="bento">
+        <article class="card span-4 glow" style="--c: var(--teal); --gx: 62%; --gy: 60%">
+          <div class="card-copy">
+            <h3>Floating window</h3>
+            <p>Detach the panel into a translucent window on any display, as tall as you like, above other windows. Close it and portent goes back to the menu bar.</p>
+          </div>
+          <figure class="card-media">
+            <video muted loop playsinline preload="none" poster="assets/detach.webp" data-poster-light="assets/detach-light.webp" width="1080" height="860" data-src-light="assets/detach-light.mp4" data-autoplay>
+              <source src="assets/detach.mp4" type="video/mp4">
+            </video>
+            <figcaption class="sr-only">The panel detaches into a window, moves to the side and grows.</figcaption>
+          </figure>
+        </article>
+        <article class="card span-2 glow" style="--c: var(--orange); --gx: 70%">
+          <div class="card-copy">
+            <h3>Open on your phone</h3>
+            <p>Ports open to the network get an orange badge. Right-click for the network URL or a QR code.</p>
+          </div>
+          <figure class="card-media qr">
+            <picture>
+              <source srcset="assets/network-light.webp" media="(prefers-color-scheme: light)">
+              <img src="assets/network.webp" width="960" height="760" loading="lazy" alt="storefront and mailpit with an orange network badge, and a QR code card for http://192.168.1.20:4200.">
+            </picture>
+          </figure>
+        </article>
+        <article class="card span-2 glow" style="--c: var(--green)">
+          <div class="card-copy">
+            <h3>Scales with your day</h3>
+            <p>Fifteen servers, two dozen sessions: extras and idle sessions fold away when the panel is full.</p>
+          </div>
+          <figure class="card-media many">
+            <picture>
+              <source srcset="assets/many-light.webp" media="(prefers-color-scheme: light)">
+              <img src="assets/many.webp" width="880" height="1720" loading="lazy" alt="The panel with four accounts and fifteen servers, the rest folded under More servers.">
+            </picture>
+          </figure>
+        </article>
+        <article class="card span-4 themes">
+          <div class="card-copy">
+            <h3>Light and dark</h3>
+            <p>Follows your system appearance, or pick one in Settings.</p>
+          </div>
+          <div class="theme-pair" aria-hidden="true">
+            <img src="assets/hero-light.webp" width="880" height="1520" loading="lazy" alt="">
+            <img src="assets/hero.webp" width="880" height="1520" loading="lazy" alt="">
+          </div>
+        </article>
+        <article class="card span-2">
+          <div class="card-copy">
+            <h3>Quiet health checks</h3>
+            <p>A plain connection check every few seconds. HTTP requests only while the panel is open, so your server logs stay clean.</p>
+          </div>
+          <p class="card-mono"><span class="ok">●</span> :3000 connect · no request logged</p>
+        </article>
+        <article class="card span-2">
+          <div class="card-copy">
+            <h3>Global shortcut</h3>
+            <p>Open the panel from anywhere with a shortcut you pick in Settings.</p>
+          </div>
+          <p class="keys" aria-label="For example Option Command P"><kbd>⌥</kbd><kbd>⌘</kbd><kbd>P</kbd></p>
+        </article>
+        <article class="card span-2">
+          <div class="card-copy">
+            <h3>Updates itself</h3>
+            <p>Signed in-app updates with Sparkle. Install them automatically or when you choose.</p>
+          </div>
+          <p class="card-mono"><span data-version>v0.2.0</span> · <a href="https://github.com/adrianfernandezalv/portent-releases/releases">release notes</a></p>
+        </article>
+        <article class="card span-6 privacy-card">
+          <div class="card-copy">
+            <h3>What portent touches</h3>
+            <p>Everything it shows comes from your Mac. No analytics, no portent account.</p>
+          </div>
+          <dl class="touches">
+            <div><dt>Reads locally</dt><dd>Listening ports, the processes behind them, Claude Code and Claude Desktop session files.</dd></div>
+            <div><dt>Goes online for</dt><dd>Your plan usage from Claude, and updates plus a small table of model context sizes from this site.</dd></div>
+            <div><dt>Asks you for</dt><dd>Notifications, and Keychain access to read the login Claude Code already saved.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <section id="install" class="install" aria-labelledby="install-title">
+    <div class="wrap"><div class="install-in">
+      <h2 id="install-title">Install portent</h2>
+      <p class="install-lede">One line in the terminal, Homebrew, or a disk image. Every way gets the same signed app, and it updates itself from then on.</p>
+      <div class="term large" data-tabs>
+        <div class="term-bar" role="tablist" aria-label="Ways to install">
+          <button type="button" role="tab" aria-selected="true" aria-controls="i-script" id="i-script-tab">Install script</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="i-brew" id="i-brew-tab" tabindex="-1">Homebrew</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="i-dmg" id="i-dmg-tab" tabindex="-1">Disk image</button>
+        </div>
+        <div class="term-panel" role="tabpanel" id="i-script" aria-labelledby="i-script-tab">
+          <div class="term-line">
+            <span class="prompt" aria-hidden="true">$</span>
+            <code>curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash</code>
+            <button class="copy" type="button" data-copy="curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash">Copy</button>
+          </div>
+          <p class="term-out">Downloads the latest release into Applications, clears the quarantine flag and opens it. <a href="install.sh">Read the script</a> first.</p>
+        </div>
+        <div class="term-panel" role="tabpanel" id="i-brew" aria-labelledby="i-brew-tab" hidden>
+          <div class="term-line">
+            <span class="prompt" aria-hidden="true">$</span>
+            <code>brew install adrianfernandezalv/tap/portent</code>
+            <button class="copy" type="button" data-copy="brew install adrianfernandezalv/tap/portent">Copy</button>
+          </div>
+          <p class="term-out">Installs the cask from the portent tap. Remove it with <code>brew uninstall portent</code>.</p>
+        </div>
+        <div class="term-panel" role="tabpanel" id="i-dmg" aria-labelledby="i-dmg-tab" hidden>
+          <div class="term-line dmg">
+            <a class="button primary" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download disk image</a>
+            <span class="term-meta"><span data-dmg-name>Portent.dmg</span> · Apple silicon and Intel</span>
+          </div>
+          <p class="term-out">Open it and drag portent to Applications.</p>
+        </div>
+      </div>
+      <div class="note">
+        <h3>First launch</h3>
+        <p>portent is signed with its own certificate and isn't notarized by Apple. The install script and the Homebrew cask clear the quarantine flag, so it opens normally. If you used the disk image and macOS says it can't verify the developer, open <strong>System Settings › Privacy &amp; Security</strong> and click <strong>Open Anyway</strong> once.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <section id="faq" class="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <h2 id="faq-title">Questions</h2>
+      <div class="faq-list">
+        <details>
+          <summary>What do I need?</summary>
+          <p>A Mac on macOS 14 Sonoma or later, Apple silicon or Intel. Plan usage works with the account Claude Code is signed into, and with any claude.ai accounts you sign in to inside portent.</p>
+        </details>
+        <details>
+          <summary>Which agents does it know about?</summary>
+          <p>Sessions from Claude Code and Claude Desktop. Dev servers show whether a Claude session, Docker or you started them.</p>
+        </details>
+        <details>
+          <summary>Does it send my data anywhere?</summary>
+          <p>No. portent reads ports, processes and session files on your Mac. It only goes online to read your plan usage from Claude, and to fetch updates and a small table of model context sizes from this site. There's no analytics and no portent account.</p>
+        </details>
+        <details>
+          <summary>Will it stop something I didn't ask it to?</summary>
+          <p>No. portent stops a server only when you click Stop, and never stops projects you protect. When ports share a process, it tells you which ones stop together.</p>
+        </details>
+        <details>
+          <summary>Why does macOS warn me the first time?</summary>
+          <p>portent is self-signed, not notarized. The install script and Homebrew clear the warning for you; from the disk image, use Open Anyway in Privacy &amp; Security once.</p>
+        </details>
+        <details>
+          <summary>How do I uninstall it?</summary>
+          <p>Quit portent from the panel and move it to the Trash, or run <code>brew uninstall portent</code> if you installed it with Homebrew.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="closing-title">
+    <div class="wrap closing-in">
+      <img class="closing-icon" src="assets/icon-256.png" width="104" height="104" alt="">
+      <h2 id="closing-title">Put your agents in the menu bar.</h2>
+      <a class="button primary" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download for Mac</a>
+      <p class="meta"><span data-version>v0.2.0</span> · macOS 14+ · <a href="#install">other ways to install</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="brand small"><img src="assets/icon-64.png" width="20" height="20" alt=""><span>portent</span></span>
+    <nav aria-label="Links">
+      <a href="https://github.com/adrianfernandezalv/portent-releases/releases">Releases and notes</a>
+      <a href="install.sh">install.sh</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

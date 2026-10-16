@@ -26,6 +26,7 @@ portent is signed with its own certificate, not notarized by Apple. The install 
 
 Served with GitHub Pages:
 
+- `index.html` and `assets/`: the landing page. Clips and stills come from the app's `--demo` scenes (made-up data), recorded with `scripts/landing/record-all.sh` in the app repo.
 - `appcast.xml`: Sparkle update feed, EdDSA-signed updates.
 - `install.sh`: the install script above.
 - `models.json`: context window per model, read by the app at most once a day. Longest matching `prefix` wins; a `[1m]` model suffix means 1M tokens; when a session holds more tokens than listed, the next of `tiers` is assumed.
