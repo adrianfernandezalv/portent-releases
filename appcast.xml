@@ -5,6 +5,15 @@
     <link>https://adrianfernandezalv.github.io/portent-releases/appcast.xml</link>
     <language>en</language>
     <item>
+      <title>0.2.0</title>
+      <pubDate>Fri, 16 Oct 2026 13:03:15 +0000</pubDate>
+      <sparkle:version>29</sparkle:version>
+      <sparkle:shortVersionString>0.2.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>Detach the panel into a floating window: place it on any display, resize it, keep it on top</li><li>Busy days stay readable: extra servers and idle sessions fold away when the panel is full</li><li>Ports open to your network get an orange badge</li><li>Open a dev server from your phone: network URL and QR code in the port&#x27;s menu</li><li>Quieter health checks: nothing in your server logs unless the panel is open</li><li>New setting to install updates automatically</li></ul>]]></description>
+      <enclosure url="https://github.com/adrianfernandezalv/portent-releases/releases/download/v0.2.0/Portent-0.2.0.dmg" length="3117173" type="application/octet-stream" sparkle:edSignature="aEpj4wtMlYYu3W1yHKG18tP4uWaJA2y55xAooqFj0/jIQgo3b17tuLbIHZ8miw9MCeBcG9sbvA4i+O6vFP4nAw=="/>
+    </item>
+    <item>
       <title>0.1.1</title>
       <pubDate>Fri, 16 Oct 2026 11:45:56 +0000</pubDate>
       <sparkle:version>24</sparkle:version>
