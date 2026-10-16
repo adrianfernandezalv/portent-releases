@@ -1,0 +1,47 @@
+name: Update models.json
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh from Anthropic's models overview
+        id: update
+        run: python3 scripts/update_models.py | tee summary.txt
+
+      - name: Open a pull request when something changed
+        if: steps.update.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git diff --quiet models.json && exit 0
+          branch=update-models
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$branch"
+          git commit -am "models.json: $(cat summary.txt)"
+          git push --force origin "$branch"
+          gh pr view "$branch" >/dev/null 2>&1 || gh pr create --head "$branch" \
+            --title "Update models.json" \
+            --body "Context windows changed on https://platform.claude.com/docs/en/about-claude/models/overview. $(cat summary.txt). Merge to publish to every portent install within a day."
+
+      - name: Report a broken parser
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue list --label parser --state open --json number -q '.[0].number' | grep -q . && exit 0
+          gh label create parser --color d93f0b --force
+          gh issue create --label parser --title "models.json update failed" \
+            --body "The daily update couldn't read the models table: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
