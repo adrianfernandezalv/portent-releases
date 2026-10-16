@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "updated": "2026-10-16",
+  "tiers": [200000, 1000000],
+  "models": [
+    { "prefix": "claude-fable-5", "context": 1000000 },
+    { "prefix": "claude-opus-5", "context": 1000000 },
+    { "prefix": "claude-sonnet-5", "context": 1000000 },
+    { "prefix": "claude-haiku-5", "context": 200000 },
+    { "prefix": "claude-opus-4", "context": 200000 },
+    { "prefix": "claude-sonnet-4", "context": 200000 },
+    { "prefix": "claude-haiku", "context": 200000 }
+  ]
+}
