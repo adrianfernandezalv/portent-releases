@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>portent</title>
+    <link>https://adrianfernandezalv.github.io/portent-releases/appcast.xml</link>
+    <language>en</language>
+    <item>
+      <title>0.1.0</title>
+      <pubDate>Fri, 16 Oct 2026 11:33:46 +0000</pubDate>
+      <sparkle:version>22</sparkle:version>
+      <sparkle:shortVersionString>0.1.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>tests: platform binary environment may be visible on CI (no SIP)</li><li>release: Sparkle public key; say which backup is critical</li><li>release: Sparkle updates, signed DMG workflow, Homebrew cask</li><li>sessions: Haiku 5 has a 1M context window in the bundled table</li><li>sessions: context window per model from published models.json</li><li>settings: fix account initials and Accounts height; fictional sample data</li><li>settings: refocus after System Settings closes, center on current screen</li><li>sessions: notify when a session needs you or finishes a long turn</li><li>settings: global hotkey, theme, menu bar count, login item approval</li><li>settings: native Settings window with General, Accounts, Notifications, About</li><li>usage: notify at 75% and 90% and when a heavily used window resets</li><li>accounts: name orgs like Claude does, hide free orgs without usage</li><li>accounts: sign in to claude.ai inside portent, per-account usage</li><li>sessions: &quot;your turn&quot; state and smooth section toggle</li><li>usage: Claude plan usage, live sessions and running-first panel</li><li>docker: containers with published ports via the engine socket</li><li>app: lock projects, relaunch closed ones, stop orphans</li><li>app: project lanes, health probe, stop tree and popover UI</li><li>core: process inspection and agent attribution for listening ports</li><li>app: menu bar skeleton with libproc port scanner</li><li>spikes: record live Claude usage validation</li><li>spikes: validate ports, process info, agent sessions and usage sources</li></ul>]]></description>
+      <enclosure url="https://github.com/adrianfernandezalv/portent-releases/releases/download/v0.1.0/Portent-0.1.0.dmg" length="2976090" type="application/octet-stream" sparkle:edSignature="Si2DOehMNtwC8vD5KuJOtgaQNVqv/ctmObxMZkBbFO88x1bP5dSpYdLjevLgNoAs775YyzknCRDpI6lgkRi7Dw=="/>
+    </item>
+  </channel>
+</rss>
