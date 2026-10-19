@@ -5,6 +5,15 @@
     <link>https://getportent.pages.dev/appcast.xml</link>
     <language>en</language>
     <item>
+      <title>0.3.0</title>
+      <pubDate>Mon, 19 Oct 2026 08:23:27 +0000</pubDate>
+      <sparkle:version>48</sparkle:version>
+      <sparkle:shortVersionString>0.3.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>See when Claude is having an incident: a banner in the panel, plus a notification when it starts and when it&#x27;s resolved.</li><li>New `portent` command: `portent ls`, `portent kill &lt;port&gt;` and `portent usage`, with `--json` so coding agents like Claude Code can use it. Homebrew installs it; otherwise turn it on in Settings › General.</li><li>CPU and memory per project next to each dev server, in orange when one runs hot.</li><li>Updates now come from getportent.pages.dev. Update checks are counted per day and version, with no ID or IP stored.</li></ul>]]></description>
+      <enclosure url="https://github.com/adrianfernandezalv/portent-releases/releases/download/v0.3.0/Portent-0.3.0.dmg" length="4645912" type="application/octet-stream" sparkle:edSignature="tzwP83K5Aa7Ogeb/qjt3U69D+jXnRka65A3zL9LiCKKmFN2nnEzIm/DUqXP0nyWxEwWj/FgOXxN4b5AtYDFLDA=="/>
+    </item>
+    <item>
       <title>0.2.1</title>
       <pubDate>Mon, 19 Oct 2026 06:33:07 +0000</pubDate>
       <sparkle:version>36</sparkle:version>
