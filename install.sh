@@ -1,6 +1,6 @@
 #!/bin/bash
 # Installs the latest portent into /Applications.
-#   curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash
+#   curl -fsSL https://getportent.pages.dev/install.sh | bash
 # portent is self-signed, not notarized: this clears the quarantine flag so macOS opens it
 # without the "unidentified developer" block. Read it before running it.
 set -euo pipefail
