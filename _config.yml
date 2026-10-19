@@ -1,0 +1,4 @@
+# GitHub Pages (legacy Jekyll build) still serves this repo for older builds. Cloudflare Pages
+# Functions are not part of that site.
+exclude:
+  - functions

@@ -29,5 +29,6 @@ Served from [getportent.pages.dev](https://getportent.pages.dev) (Cloudflare Pag
 - `index.html` and `assets/`: the landing page, at [getportent.pages.dev](https://getportent.pages.dev). Clips and stills come from the app's `--demo` scenes (made-up data), recorded with `scripts/landing/record-all.sh` in the app repo.
 - `appcast.xml`: Sparkle update feed, EdDSA-signed updates.
 - `install.sh`: the install script above.
+- `functions/`: Cloudflare Pages Functions that serve `appcast.xml` and `models.json` unchanged and count each request per day and app version (from the User-Agent) in Workers Analytics Engine. No IP or identifier is stored. `scripts/stats.sh` prints the totals.
 - `models.json`: context window per model, read by the app at most once a day. Longest matching `prefix` wins; a `[1m]` model suffix means 1M tokens; when a session holds more tokens than listed, the next of `tiers` is assumed.
   Kept current by a daily workflow that reads Anthropic's [models overview](https://platform.claude.com/docs/en/about-claude/models/overview) and opens a pull request when a context window changes.
