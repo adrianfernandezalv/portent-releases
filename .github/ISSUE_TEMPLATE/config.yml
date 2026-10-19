@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: macOS says it can't verify the developer
+    url: https://github.com/adrianfernandezalv/portent-releases#first-launch-warning
+    about: portent isn't notarized. One click in Privacy & Security fixes it.
