@@ -392,7 +392,7 @@ main { overflow-x: hidden; overflow-x: clip; }
 .theme-pair { margin: 20px -24px 0; display: grid; grid-template-columns: 1fr 1fr; flex: 1; align-items: end; }
 .theme-pair img { width: 100%; height: 100%; max-height: 300px; object-fit: cover; object-position: top; }
 .privacy-card { min-height: 0; padding-bottom: 24px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 2.2fr); gap: 32px; }
-.touches { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.touches { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; }
 .touches dt { font: 520 12.5px var(--mono); color: var(--teal); }
 .touches dd { margin: 6px 0 0; font-size: 14.5px; color: var(--muted); }
 @media (prefers-color-scheme: light) {
@@ -414,6 +414,16 @@ main { overflow-x: hidden; overflow-x: clip; }
     box-shadow: 0 0 0 5px var(--bg), 0 0 18px color-mix(in srgb, var(--c) 60%, transparent);
   }
 }
+
+/* Pricing: the price next to what the trial ends in. */
+.feature.pricing { padding-block: 96px 24px; }
+.pricing-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
+.pricing .feature-copy > .price { margin-top: 28px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; color: var(--text); }
+.price-amount { font: 650 clamp(2.8rem, 5vw, 3.6rem)/1 var(--display); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.price-term { font: 13px var(--mono); color: var(--faint); }
+.pricing-cta { margin-top: 28px; }
+.pricing .feature-copy > .pricing-meta { margin-top: 14px; font-size: 13px; color: var(--faint); }
+.pricing .media.tall { justify-self: center; width: min(100%, 440px); }
 
 /* Install */
 .install { padding-block: 104px; }
@@ -476,7 +486,7 @@ main { overflow-x: hidden; overflow-x: clip; }
   .hero-stage { --mw: min(100vw - 32px, 420px); grid-template-columns: 1fr; margin-top: 40px; justify-items: center; }
   .callouts { display: none; }
   .hero-media { width: min(100%, var(--mw)); }
-  .split .wrap, .session-row, .notify-row { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .split .wrap, .session-row, .notify-row, .pricing-row { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .session-row .media, .status-row .media { order: 2; }
   /* Clips and stills two up, the small cards three up. */
   .span-4, .span-6 { grid-column: span 6; }
@@ -487,8 +497,9 @@ main { overflow-x: hidden; overflow-x: clip; }
   body { font-size: 16px; }
   .wrap { width: calc(100% - 32px); }
   .top nav { gap: 14px; }
-  .top nav a[href="#faq"] { display: none; }
+  .top nav a[href="#faq"], .top nav a[href="#features"] { display: none; }
   .feature, .install { padding-block: 60px; }
+  .feature.pricing { padding-block: 60px 0; }
   .wide .media { margin-top: 28px; }
   .cta .button { width: 100%; }
   .term-line code { font-size: 13px; }
@@ -515,7 +526,7 @@ main { overflow-x: hidden; overflow-x: clip; }
 }
 
 @media (max-width: 359px) {
-  .top nav a[href="#features"] { display: none; }
+  .top nav a[href="#pricing"] { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

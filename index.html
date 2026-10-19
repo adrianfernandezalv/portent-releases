@@ -31,6 +31,7 @@
     </a>
     <nav aria-label="Sections">
       <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
       <a href="#install">Install</a>
       <a href="#faq">FAQ</a>
       <a class="button small" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download</a>
@@ -56,7 +57,7 @@
       <div class="hero-cta">
         <div class="cta">
           <a class="button primary" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download for Mac</a>
-          <p class="meta"><span data-version>v0.3.0</span> · macOS 14+ · Apple silicon and Intel · free</p>
+          <p class="meta"><span data-version>v0.3.0</span> · macOS 14+ · Apple silicon and Intel · 7-day free trial, then €4.99 once</p>
           <p class="gatekeeper">Not notarized yet: the first time, macOS blocks the disk image, then the app. Allow each in Privacy &amp; Security › Open Anyway. The command below skips this.</p>
         </div>
         <div class="term" data-tabs>
@@ -79,7 +80,7 @@
             </div>
           </div>
         </div>
-        <p class="privacy">No account, no tracking. portent only talks to Claude and this site, and update checks are counted without IDs.</p>
+        <p class="privacy">No account, no tracking. portent only talks to Claude, Polar for your license, and this site, and update checks are counted without IDs.</p>
       </div>
     </div>
 
@@ -318,10 +319,38 @@ Opus week  18%  resets in 4d 23h</pre>
           <dl class="touches">
             <div><dt>Reads locally</dt><dd>Listening ports, the processes behind them and their CPU and memory, Claude Code and Claude Desktop session files.</dd></div>
             <div><dt>Goes online for</dt><dd>Your plan usage and Claude's status page, and updates plus a small table of model context sizes from this site.</dd></div>
+            <div><dt>Checks your license</dt><dd>With Polar: once when you enter the key, then about once a week. Offline, the last check stands, so portent keeps working.</dd></div>
             <div><dt>Asks you for</dt><dd>Notifications, and Keychain access to read the login Claude Code already saved.</dd></div>
           </dl>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="feature pricing" style="--c: var(--blue)" aria-labelledby="pricing-title">
+    <div class="wrap pricing-row">
+      <div class="feature-copy">
+        <p class="kicker">Pricing</p>
+        <h2 id="pricing-title">Try it for a week. Keep it for good.</h2>
+        <p>Everything works for 7 days, no key and no card. After that the panel locks until you buy a license: one payment, yours to keep.</p>
+        <p class="price"><span class="price-amount">€4.99</span><span class="price-term">once, not a subscription</span></p>
+        <ul class="points">
+          <li>Every future update included.</li>
+          <li>Works on 2 Macs, and you can move it to another one.</li>
+          <li>7-day free trial, with the full app.</li>
+        </ul>
+        <div class="cta pricing-cta">
+          <a class="button primary" href="https://buy.polar.sh/polar_cl_0Yomr2RCzoWUPCz62oWM3jkEizFzVckIsO1J90zNuvW">Buy portent · €4.99</a>
+          <a class="button" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Start the free trial</a>
+        </div>
+        <p class="meta pricing-meta">Checkout and receipts by <a href="https://polar.sh">Polar</a>. The key arrives by email; paste it in Settings › License.</p>
+      </div>
+      <figure class="media tall glow">
+        <picture>
+          <source srcset="assets/locked-light.webp" media="(prefers-color-scheme: light)">
+          <img src="assets/locked.webp" width="880" height="1520" loading="lazy" alt="After the trial: the portent panel blurred behind a card that says Your free trial has ended, with Buy portent and Enter key buttons.">
+        </picture>
+      </figure>
     </div>
   </section>
 
@@ -330,7 +359,7 @@ Opus week  18%  resets in 4d 23h</pre>
   <section id="install" class="install" aria-labelledby="install-title">
     <div class="wrap"><div class="install-in">
       <h2 id="install-title">Install portent</h2>
-      <p class="install-lede">One line in the terminal, Homebrew, or a disk image. Every way gets the same signed app, and it updates itself from then on.</p>
+      <p class="install-lede">One line in the terminal, Homebrew, or a disk image. Every way gets the same signed app, starts the 7-day trial, and updates itself from then on.</p>
       <div class="term large" data-tabs>
         <div class="term-bar" role="tablist" aria-label="Ways to install">
           <button type="button" role="tab" aria-selected="true" aria-controls="i-script" id="i-script-tab">Install script</button>
@@ -381,8 +410,32 @@ Opus week  18%  resets in 4d 23h</pre>
           <p>Sessions from Claude Code and Claude Desktop. Dev servers show whether a Claude session, Docker or you started them.</p>
         </details>
         <details>
+          <summary>How does the free trial work?</summary>
+          <p>Install portent and everything works for 7 days, no key or card needed. In the last two days a banner in the panel reminds you. After the 7th day the panel locks behind a Buy card, notifications stop and the <code>portent</code> command only answers <code>help</code> and <code>version</code>, until you enter a license key. Updating from a free 0.x build starts the trial then.</p>
+        </details>
+        <details>
+          <summary>How much is it, and what do I get?</summary>
+          <p>€4.99, once. You get every future update, on up to 2 Macs. <a href="https://buy.polar.sh/polar_cl_0Yomr2RCzoWUPCz62oWM3jkEizFzVckIsO1J90zNuvW">Buy it here</a>; the key arrives by email, and you paste it in <strong>Settings › License</strong> or in the card on the locked panel.</p>
+        </details>
+        <details>
+          <summary>How do I move my license to another Mac?</summary>
+          <p>A key works on 2 Macs at a time. On the Mac you're leaving, open <strong>Settings › License</strong> and click <strong>Deactivate</strong>, then enter the key on the new one. If that Mac is gone, free it from the <a href="https://polar.sh/getportent/portal">customer portal</a>.</p>
+        </details>
+        <details>
+          <summary>I lost my license key.</summary>
+          <p>Sign in to the <a href="https://polar.sh/getportent/portal">customer portal</a> with the email you bought it with: your key, your Macs and your receipts are there.</p>
+        </details>
+        <details>
+          <summary>Can I get a refund?</summary>
+          <p>Polar sells portent as the merchant of record, so payments, invoices and refunds go through them: use the contact on your receipt email, or find your order in the <a href="https://polar.sh/getportent/portal">customer portal</a>.</p>
+        </details>
+        <details>
+          <summary>Does it work offline?</summary>
+          <p>Yes. portent checks the license with Polar when you enter the key and then about once a week. If it can't reach Polar, the last check stands and nothing locks.</p>
+        </details>
+        <details>
           <summary>Does it send my data anywhere?</summary>
-          <p>No. portent reads ports, processes and session files on your Mac. It only goes online to read your plan usage and status from Claude, and to fetch updates and a small table of model context sizes from this site. There's no portent account. Update checks are counted per day and version, with no ID or IP stored, and the site counts visits without cookies.</p>
+          <p>No. portent reads ports, processes and session files on your Mac. It only goes online to read your plan usage and status from Claude, to check your license with Polar, and to fetch updates and a small table of model context sizes from this site. There's no portent account: Polar only knows the email you bought with. Update checks are counted per day and version, with no ID or IP stored, and the site counts visits without cookies.</p>
         </details>
         <details>
           <summary>Can my coding agent use it?</summary>
@@ -409,7 +462,7 @@ Opus week  18%  resets in 4d 23h</pre>
       <img class="closing-icon" src="assets/icon-256.png" width="104" height="104" alt="">
       <h2 id="closing-title">Put your agents in the menu bar.</h2>
       <a class="button primary" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download for Mac</a>
-      <p class="meta"><span data-version>v0.3.0</span> · macOS 14+ · <a href="#install">other ways to install</a></p>
+      <p class="meta"><span data-version>v0.3.0</span> · macOS 14+ · 7-day free trial · <a href="#pricing">€4.99 once</a> · <a href="#install">other ways to install</a></p>
       <p class="gatekeeper">Not notarized yet: the first time, allow the disk image, then the app, in Privacy &amp; Security › Open Anyway.</p>
     </div>
   </section>
@@ -421,6 +474,7 @@ Opus week  18%  resets in 4d 23h</pre>
     <nav aria-label="Links">
       <a href="https://github.com/adrianfernandezalv/portent-releases/releases">Releases and notes</a>
       <a href="install.sh">install.sh</a>
+      <a href="https://polar.sh/getportent/portal">Manage your license</a>
     </nav>
   </div>
 </footer>
