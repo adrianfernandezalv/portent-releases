@@ -57,6 +57,7 @@
         <div class="cta">
           <a class="button primary" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download for Mac</a>
           <p class="meta"><span data-version>v0.2.1</span> · macOS 14+ · Apple silicon and Intel · free</p>
+          <p class="gatekeeper">Not notarized yet: the first time, macOS blocks the disk image, then the app. Allow each in Privacy &amp; Security › Open Anyway. The command below skips this.</p>
         </div>
         <div class="term" data-tabs>
           <div class="term-bar" role="tablist" aria-label="Install from the terminal">
@@ -127,6 +128,7 @@
         <h2 id="f-servers">Every dev server, and who started it.</h2>
         <p>Each port gets a health dot, its branch and its origin: a Claude Code or Claude Desktop session, Docker, or started by you.</p>
         <ul class="points">
+          <li>CPU and memory per project, in orange when one runs hot.</li>
           <li>Stop one port, a whole project, or everything an ended session left behind.</li>
           <li>Protect the servers that must stay up; portent won't stop them.</li>
           <li>Relaunch recently closed projects with the command they ran.</li>
@@ -167,6 +169,70 @@
         </video>
         <figcaption class="sr-only">ACME-482 asks for a permission and a notification arrives; after a click, recipe-box finishes its turn.</figcaption>
       </figure>
+    </div>
+    <div class="wrap notify-row status-row" style="--c: var(--orange)">
+      <figure class="media glow" style="--gx: 30%; --gw: 34%; --gh: 50%">
+        <video muted loop playsinline preload="none" poster="assets/status.webp" data-poster-light="assets/status-light.webp" width="1248" height="992" data-src-light="assets/status-light.mp4" data-autoplay>
+          <source src="assets/status.mp4" type="video/mp4">
+        </video>
+        <figcaption class="sr-only">Claude Code reports elevated errors: a notification arrives and a banner shows in the panel; later the incident is resolved and a second notification says so.</figcaption>
+      </figure>
+      <div class="feature-copy">
+        <p class="kicker">Claude status</p>
+        <h3>Is it Claude, or is it you?</h3>
+        <p>When claude.ai, the Claude API or Claude Code has an incident, a banner shows in the panel and a notification tells you, and again when it's resolved. Click either to read the incident.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature wide cli" style="--c: var(--green)" aria-labelledby="f-cli">
+    <div class="wrap">
+      <div class="feature-copy">
+        <p class="kicker">Command line</p>
+        <h2 id="f-cli">Ask from the terminal, or let your agent ask.</h2>
+        <p>The <code>portent</code> command lists your dev servers, stops one by port and shows your plan usage, with or without the app running. Add <code>--json</code> and Claude Code can check what's already on port 3000 before it starts another server.</p>
+      </div>
+      <div class="term cli-term" data-tabs>
+        <div class="term-bar" role="tablist" aria-label="portent commands">
+          <button type="button" role="tab" aria-selected="true" aria-controls="cli-ls" id="cli-ls-tab">ls</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="cli-kill" id="cli-kill-tab" tabindex="-1">kill</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="cli-usage" id="cli-usage-tab" tabindex="-1">usage</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="cli-agent" id="cli-agent-tab" tabindex="-1">In Claude Code</button>
+        </div>
+        <div class="term-panel" role="tabpanel" id="cli-ls" aria-labelledby="cli-ls-tab">
+<pre class="term-pre" tabindex="0"><span class="prompt" aria-hidden="true">$</span> <b>portent ls</b>
+PROJECT         PORTS        AGENT           BRANCH    STATE    COMMAND
+portent         :3000 :5173  Claude Desktop  main      -        npm run dev
+storefront      :4200        Claude Desktop  ACME-482  network  ng serve --port 4200
+orders-service  :8080        Claude Code     ACME-490  -        java -jar app.jar
+telemetry-api   :8000        Claude Code     NIM-37    orphan   python3 -m uvicorn app:api
+mailpit         :8025        -               -         locked   docker compose up mailpit</pre>
+        </div>
+        <div class="term-panel" role="tabpanel" id="cli-kill" aria-labelledby="cli-kill-tab" hidden>
+<pre class="term-pre" tabindex="0"><span class="prompt" aria-hidden="true">$</span> <b>portent kill 8000</b>
+stopped telemetry-api (:8000)
+<span class="prompt" aria-hidden="true">$</span> <b>portent kill 3000</b>
+stopped portent (:3000 :5173)
+<span class="prompt" aria-hidden="true">$</span> <b>portent kill 8025</b>
+mailpit on :8025 is locked in portent, unlock it in the panel first</pre>
+        </div>
+        <div class="term-panel" role="tabpanel" id="cli-usage" aria-labelledby="cli-usage-tab" hidden>
+<pre class="term-pre" tabindex="0"><span class="prompt" aria-hidden="true">$</span> <b>portent usage</b>
+Claude Max
+Session    34%  resets in 2h 10m
+Week       61%  resets in 4d 23h
+Opus week  18%  resets in 4d 23h</pre>
+        </div>
+        <div class="term-panel" role="tabpanel" id="cli-agent" aria-labelledby="cli-agent-tab" hidden>
+<pre class="term-pre soft" tabindex="0"><span class="dim">&gt;</span> <b>what's running on port 3000?</b>
+
+<span class="dot" aria-hidden="true">⏺</span> Bash(portent ls --json)
+  <span class="dim">⎿ {"projects": [{"name": "portent", "branch": "main", "agent": "Claude Desktop", …</span>
+
+<span class="dot" aria-hidden="true">⏺</span> Port 3000 is portent's dev server (npm run dev on main), started by a Claude Desktop session. It also serves :5173. Want me to use 3001 instead, or stop it with portent kill 3000?</pre>
+        </div>
+      </div>
+      <p class="cli-note">Homebrew puts <code>portent</code> on your PATH. With the install script or the disk image, turn it on in <strong>Settings › General › Command line tool</strong>, which links it into <code>~/.local/bin</code>.</p>
     </div>
   </section>
 
@@ -250,8 +316,8 @@
             <p>Everything it shows comes from your Mac. No tracking, no portent account.</p>
           </div>
           <dl class="touches">
-            <div><dt>Reads locally</dt><dd>Listening ports, the processes behind them, Claude Code and Claude Desktop session files.</dd></div>
-            <div><dt>Goes online for</dt><dd>Your plan usage from Claude, and updates plus a small table of model context sizes from this site.</dd></div>
+            <div><dt>Reads locally</dt><dd>Listening ports, the processes behind them and their CPU and memory, Claude Code and Claude Desktop session files.</dd></div>
+            <div><dt>Goes online for</dt><dd>Your plan usage and Claude's status page, and updates plus a small table of model context sizes from this site.</dd></div>
             <div><dt>Asks you for</dt><dd>Notifications, and Keychain access to read the login Claude Code already saved.</dd></div>
           </dl>
         </article>
@@ -292,12 +358,12 @@
             <a class="button primary" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download disk image</a>
             <span class="term-meta"><span data-dmg-name>Portent.dmg</span> · Apple silicon and Intel</span>
           </div>
-          <p class="term-out">Open it and drag portent to Applications.</p>
+          <p class="term-out">Open it and drag portent to Applications. macOS blocks the disk image and then the app the first time: allow each once in System Settings › Privacy &amp; Security with Open Anyway.</p>
         </div>
       </div>
       <div class="note">
         <h3>First launch</h3>
-        <p>portent is signed with its own certificate and isn't notarized by Apple. The install script and the Homebrew cask clear the quarantine flag, so it opens normally. If you used the disk image and macOS says it can't verify the developer, open <strong>System Settings › Privacy &amp; Security</strong> and click <strong>Open Anyway</strong> once.</p>
+        <p>portent is signed with its own certificate and isn't notarized by Apple. The install script and the Homebrew cask clear the quarantine flag, so it opens normally. From the disk image, macOS says it can't verify the developer twice: once for the image and once for the app. Each time, open <strong>System Settings › Privacy &amp; Security</strong> and click <strong>Open Anyway</strong>. On macOS 15 and later, right-click › Open no longer gets past it.</p>
       </div>
     </div></div>
   </section>
@@ -316,7 +382,11 @@
         </details>
         <details>
           <summary>Does it send my data anywhere?</summary>
-          <p>No. portent reads ports, processes and session files on your Mac. It only goes online to read your plan usage from Claude, and to fetch updates and a small table of model context sizes from this site. There's no portent account. Update checks are counted per day and version, with no ID or IP stored, and the site counts visits without cookies.</p>
+          <p>No. portent reads ports, processes and session files on your Mac. It only goes online to read your plan usage and status from Claude, and to fetch updates and a small table of model context sizes from this site. There's no portent account. Update checks are counted per day and version, with no ID or IP stored, and the site counts visits without cookies.</p>
+        </details>
+        <details>
+          <summary>Can my coding agent use it?</summary>
+          <p>Yes, through the <code>portent</code> command. Every command takes <code>--json</code> and works without the app running. Add a line like “Run <code>portent ls --json</code> to see which dev servers and ports are in use” to your <code>CLAUDE.md</code>, and Claude Code checks before it starts another server.</p>
         </details>
         <details>
           <summary>Will it stop something I didn't ask it to?</summary>
@@ -324,7 +394,7 @@
         </details>
         <details>
           <summary>Why does macOS warn me the first time?</summary>
-          <p>portent is self-signed, not notarized. The install script and Homebrew clear the warning for you; from the disk image, use Open Anyway in Privacy &amp; Security once.</p>
+          <p>portent is self-signed, not notarized. The install script and Homebrew clear the warning for you; from the disk image, use Open Anyway in Privacy &amp; Security once for the image and once for the app.</p>
         </details>
         <details>
           <summary>How do I uninstall it?</summary>
@@ -340,6 +410,7 @@
       <h2 id="closing-title">Put your agents in the menu bar.</h2>
       <a class="button primary" data-dmg href="https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg">Download for Mac</a>
       <p class="meta"><span data-version>v0.2.1</span> · macOS 14+ · <a href="#install">other ways to install</a></p>
+      <p class="gatekeeper">Not notarized yet: the first time, allow the disk image, then the app, in Privacy &amp; Security › Open Anyway.</p>
     </div>
   </section>
 </main>
