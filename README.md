@@ -5,7 +5,7 @@ Downloads and public files for **portent**, a macOS menu bar app for developers 
 ## Install
 
 ```bash
-curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash
+curl -fsSL https://getportent.pages.dev/install.sh | bash
 ```
 
 or with Homebrew:
@@ -24,9 +24,9 @@ portent is signed with its own certificate, not notarized by Apple. The install 
 
 ## Files
 
-Served with GitHub Pages:
+Served from [getportent.pages.dev](https://getportent.pages.dev) (Cloudflare Pages), deployed on every push to `main`. GitHub Pages (`adrianfernandezalv.github.io/portent-releases`) deploys the same files and stays on for installed apps that still read `appcast.xml` and `models.json` from there; its landing redirects to Cloudflare.
 
-- `index.html` and `assets/`: the landing page. Clips and stills come from the app's `--demo` scenes (made-up data), recorded with `scripts/landing/record-all.sh` in the app repo.
+- `index.html` and `assets/`: the landing page, at [getportent.pages.dev](https://getportent.pages.dev). Clips and stills come from the app's `--demo` scenes (made-up data), recorded with `scripts/landing/record-all.sh` in the app repo.
 - `appcast.xml`: Sparkle update feed, EdDSA-signed updates.
 - `install.sh`: the install script above.
 - `models.json`: context window per model, read by the app at most once a day. Longest matching `prefix` wins; a `[1m]` model suffix means 1M tokens; when a session holds more tokens than listed, the next of `tiers` is assumed.
