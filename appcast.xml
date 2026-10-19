@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
     <title>portent</title>
-    <link>https://adrianfernandezalv.github.io/portent-releases/appcast.xml</link>
+    <link>https://getportent.pages.dev/appcast.xml</link>
     <language>en</language>
     <item>
       <title>0.2.1</title>
