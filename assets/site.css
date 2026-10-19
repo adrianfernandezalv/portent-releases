@@ -172,6 +172,16 @@ main { overflow-x: hidden; overflow-x: clip; }
 .term-line.dmg { flex-wrap: wrap; gap: 12px 16px; }
 .term-line.dmg .button.primary { background: #ececee; color: #0e0f12; box-shadow: none; }
 .term-meta { font: 13px var(--mono); color: var(--t-muted); }
+/* Command output: real columns, so it scrolls sideways instead of wrapping. */
+.term-pre {
+  margin: 0; font: 13.5px/1.65 var(--mono); color: #c9cbd0; white-space: pre; overflow-x: auto;
+  min-height: calc(7 * 1.65em);
+}
+.term-pre b { font-weight: 550; color: var(--t-text); }
+.term-pre .dim { color: var(--t-muted); }
+.term-pre .dot { color: #d97757; }
+.term-pre.soft { white-space: pre-wrap; }
+.term-pre:focus-visible { outline-offset: 4px; }
 
 /* Hero */
 .hero { position: relative; padding-block: 64px 40px; isolation: isolate; }
@@ -207,6 +217,9 @@ main { overflow-x: hidden; overflow-x: clip; }
 .hero-cta { display: grid; gap: 18px; }
 .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
 .privacy { font-size: 13.5px; color: var(--faint); }
+.gatekeeper { flex-basis: 100%; font-size: 13.5px; line-height: 1.5; color: var(--faint); max-width: 44em; }
+.gatekeeper strong { font-weight: 550; color: var(--muted); }
+.gatekeeper a { color: var(--muted); }
 
 .hero-stage {
   --mw: 440px;
@@ -265,18 +278,33 @@ main { overflow-x: hidden; overflow-x: clip; }
   -webkit-mask-image: var(--fade); mask-image: var(--fade);
   -webkit-mask-composite: source-in; mask-composite: intersect;
 }
-.glow { position: relative; isolation: isolate; }
+/* Each clip sits on a neutral stage; the section color is only a line of light on its top edge.
+   The clips blend with `lighten`, so the stage stays darker than the panel (#151517):
+   anything lighter or tinted behind it would show through and dim the gray text. */
+.glow { position: relative; isolation: isolate; --stage: -14px; }
 .glow::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: radial-gradient(var(--gw, 46%) var(--gh, 42%) at var(--gx, 50%) var(--gy, 46%),
-    color-mix(in srgb, var(--c) 20%, transparent), transparent);
-  filter: blur(24px);
+  content: ""; position: absolute; inset: var(--stage); z-index: -1;
+  border-radius: 18px; border: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  background: linear-gradient(#121317, #0f1013 70%);
 }
+/* The hero panel floats on the dot grid; only the sections below sit on stages. */
+.hero-media.glow::before, .hero-media.glow::after { display: none; }
+.hero-media.glow video { mix-blend-mode: normal; } /* or the grid dots would show through the panel */
+.glow::after {
+  content: ""; position: absolute; z-index: -1; height: 1px;
+  top: var(--stage); left: 18%; right: 18%;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--c) 80%, transparent), transparent);
+  box-shadow: 0 0 18px 1px color-mix(in srgb, var(--c) 30%, transparent);
+}
+.card.glow { --stage: 0px; }
+.card.glow::before { display: none; }
 .glow video, .glow img { mix-blend-mode: lighten; }
 @media (prefers-color-scheme: light) {
-  .glow::before { display: none; }
+  .glow::before { background: var(--surface); }
+  .glow::after { box-shadow: none; }
   .glow video, .glow img { mix-blend-mode: normal; }
 }
+@media (max-width: 720px) { .glow { --stage: -8px; } }
 
 /* Pause control on every looping clip. */
 .has-toggle { position: relative; }
@@ -324,6 +352,10 @@ main { overflow-x: hidden; overflow-x: clip; }
   mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent);
 }
 .notify-row { margin-top: 56px; grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr); }
+.status-row { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
+.cli .term { margin-top: 40px; }
+.cli-note { margin-top: 16px; font-size: 14.5px; color: var(--muted); max-width: 52em; }
+.cli-note strong { font-weight: 600; color: var(--text); }
 
 /* Bento: the smaller things, each with its own proof. */
 .bento {
@@ -445,7 +477,7 @@ main { overflow-x: hidden; overflow-x: clip; }
   .callouts { display: none; }
   .hero-media { width: min(100%, var(--mw)); }
   .split .wrap, .session-row, .notify-row { grid-template-columns: minmax(0, 1fr); gap: 32px; }
-  .session-row .media { order: 2; }
+  .session-row .media, .status-row .media { order: 2; }
   /* Clips and stills two up, the small cards three up. */
   .span-4, .span-6 { grid-column: span 6; }
   .span-2:has(> .card-media) { grid-column: span 3; }
@@ -460,6 +492,12 @@ main { overflow-x: hidden; overflow-x: clip; }
   .wide .media { margin-top: 28px; }
   .cta .button { width: 100%; }
   .term-line code { font-size: 13px; }
+  .term-pre { font-size: 12px; }
+  .term-pre:not(.soft) {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  }
+  .cli .term { margin-top: 28px; }
   .pill-text { display: none; }
   .faq { padding-block: 40px 56px; }
   .closing { padding-block: 72px 88px; }
