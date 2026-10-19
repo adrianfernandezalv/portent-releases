@@ -51,13 +51,14 @@
     --button-text: #f5f5f7;
     --grid: rgba(0, 0, 0, 0.07);
     --strip: rgba(0, 0, 0, 0.045);
-    --orange: #c77600;
-    --red: #d63d30;
-    --green: #1a8a3c;
+    /* Darker than the app's: they're text on the page here, so they keep 4.5:1. */
+    --orange: #9a5c00;
+    --red: #c4362a;
+    --green: #167a35;
     --blue: #0068d6;
     --purple: #8e36c2;
-    --teal: #0a87b3;
-    --claude: #b85a36;
+    --teal: #07759c;
+    --claude: #a94f2e;
     color-scheme: light;
   }
 }
@@ -76,9 +77,11 @@ body {
 img, video { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 code, kbd { font-family: var(--mono); font-size: 0.86em; }
-h1, h2, h3 { font-family: var(--display); margin: 0; font-weight: 650; }
-p { margin: 0; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+h1, h2, h3 { font-family: var(--display); margin: 0; font-weight: 650; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+/* The hero strip and the blurred glows reach past the edges: clip them, not scroll (iOS ignores body overflow). */
+main { overflow-x: hidden; overflow-x: clip; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .wrap { width: min(1120px, 100% - 48px); margin-inline: auto; }
 
@@ -105,6 +108,8 @@ p { margin: 0; }
 .top nav { display: flex; align-items: center; gap: 26px; font-size: 14px; }
 .top nav a:not(.button), .foot nav a { color: var(--muted); text-decoration: none; transition: color .15s; }
 .top nav a:not(.button):hover, .foot nav a:hover { color: var(--text); }
+/* Comfortable tap targets without changing the bar's height. */
+.top nav a:not(.button), .foot nav a { padding-block: 11px; }
 
 /* Buttons */
 .button {
@@ -146,8 +151,12 @@ p { margin: 0; }
 .term-line code {
   flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; scrollbar-width: none;
   font-size: 13.5px; color: var(--t-text);
+  /* Long commands fade out at the edge, hinting they scroll. */
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
 }
 .term-line code::-webkit-scrollbar { display: none; }
+.term-line code:focus-visible { outline-offset: 4px; }
 .copy {
   flex: none; font: 500 12px var(--sans); color: var(--t-muted);
   background: rgba(255, 255, 255, 0.06); border: 1px solid var(--t-line); border-radius: 8px;
@@ -269,6 +278,19 @@ p { margin: 0; }
   .glow video, .glow img { mix-blend-mode: normal; }
 }
 
+/* Pause control on every looping clip. */
+.has-toggle { position: relative; }
+.clip-toggle {
+  position: absolute; right: 10px; bottom: 10px; z-index: 2;
+  width: 32px; height: 32px; display: grid; place-items: center; padding: 0;
+  border-radius: 50%; border: 1px solid var(--line); cursor: pointer;
+  background: color-mix(in srgb, var(--surface) 85%, transparent); color: var(--muted);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  opacity: .55; transition: opacity .15s, color .15s;
+}
+.has-toggle:hover .clip-toggle, .clip-toggle:focus-visible, .clip-toggle.held { opacity: 1; color: var(--text); }
+.clip-toggle svg { width: 12px; height: 12px; fill: currentColor; }
+
 /* Features, joined by a dotted rail with one node per section. */
 .features { position: relative; }
 .feature { padding-block: 72px; }
@@ -325,7 +347,7 @@ p { margin: 0; }
 .card-media.qr img { --fade: linear-gradient(to right, transparent, #000 18%), linear-gradient(transparent, #000 10%, #000 86%, transparent); }
 .card-media.many img { object-fit: cover; object-position: top; aspect-ratio: 4 / 3.4; }
 .card .card-mono, .card .keys { margin-top: auto; padding-block: 24px; }
-.card-mono { font: 13px var(--mono); color: var(--muted); }
+.card-mono { font: 13px var(--mono); color: var(--muted); text-wrap: balance; }
 .card-mono a { color: var(--text); }
 .card-mono .ok { color: var(--green); margin-right: 6px; }
 .keys { display: flex; gap: 8px; }
@@ -421,12 +443,12 @@ p { margin: 0; }
   .hero-head { grid-template-columns: 1fr; gap: 32px; }
   .hero-stage { --mw: min(100vw - 32px, 420px); grid-template-columns: 1fr; margin-top: 40px; justify-items: center; }
   .callouts { display: none; }
-  .hero-media { width: var(--mw); }
+  .hero-media { width: min(100%, var(--mw)); }
   .split .wrap, .session-row, .notify-row { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .session-row .media { order: 2; }
-  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .span-4, .span-6 { grid-column: span 2; }
-  .touches { grid-template-columns: 1fr; gap: 16px; }
+  /* Clips and stills two up, the small cards three up. */
+  .span-4, .span-6 { grid-column: span 6; }
+  .span-2:has(> .card-media) { grid-column: span 3; }
 }
 
 @media (max-width: 640px) {
@@ -439,12 +461,23 @@ p { margin: 0; }
   .cta .button { width: 100%; }
   .term-line code { font-size: 13px; }
   .pill-text { display: none; }
-  .bento { grid-template-columns: minmax(0, 1fr); }
-  .span-2, .span-4, .span-6 { grid-column: auto; }
+  .faq { padding-block: 40px 56px; }
+  .closing { padding-block: 72px 88px; }
   /* Wide clips would shrink past reading size: crop to the part that matters. */
-  .wide .media video, .notify-row .media video {
+  .wide .media video {
     aspect-ratio: 1 / 1; object-fit: cover; object-position: var(--focus, 50%) top;
   }
+}
+
+@media (max-width: 760px) {
+  .bento { grid-template-columns: minmax(0, 1fr); }
+  .bento > .card { grid-column: auto; min-height: 0; }
+  .card .card-mono, .card .keys { margin-top: 0; padding-block: 20px 24px; }
+  .touches { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 359px) {
+  .top nav a[href="#features"] { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

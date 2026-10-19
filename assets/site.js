@@ -1,11 +1,15 @@
 // Copy buttons, install tabs, clips that play only while on screen, and the latest version from GitHub.
 (() => {
+  const status = document.querySelector("[data-status]");
+  const announce = (text) => { if (status) { status.textContent = ""; setTimeout(() => { status.textContent = text; }, 50); } };
+
   for (const button of document.querySelectorAll("[data-copy]")) {
     button.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(button.dataset.copy);
         button.textContent = "Copied";
         button.dataset.done = "";
+        announce("Copied to clipboard");
         setTimeout(() => { button.textContent = "Copy"; delete button.dataset.done; }, 1600);
       } catch {
         // Clipboard blocked: select the command so it can be copied by hand.
@@ -60,11 +64,46 @@
     // Posters stay up; controls let people play a clip if they want to.
     for (const v of videos) { v.pause(); v.removeAttribute("autoplay"); v.controls = true; }
   } else {
+    // Autoplay refused (Low Power Mode, data saver): native controls take over from the toggle.
+    // A pause() racing play() (fast scrolling) rejects with AbortError: that one is fine.
+    const play = (v) => v.play().catch((e) => {
+      if (e.name !== "NotAllowedError") return;
+      v.controls = true;
+      v.parentElement.querySelector(".clip-toggle")?.remove();
+    });
+
+    // Looping clips need a way to stop them (WCAG 2.2.2); a paused clip stays paused.
+    const PAUSE = '<svg viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.8" height="9" rx=".6"/><rect x="7.2" y="1.5" width="2.8" height="9" rx=".6"/></svg>';
+    const PLAY = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.6v8.8a.6.6 0 0 0 .9.5l7-4.4a.6.6 0 0 0 0-1L3.9 1.1a.6.6 0 0 0-.9.5z"/></svg>';
+    for (const v of videos) {
+      const toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "clip-toggle";
+      const render = () => {
+        const held = "held" in v.dataset;
+        toggle.classList.toggle("held", held);
+        toggle.setAttribute("aria-label", held ? "Play clip" : "Pause clip");
+        toggle.innerHTML = held ? PLAY : PAUSE;
+      };
+      toggle.addEventListener("click", () => {
+        if ("held" in v.dataset) { delete v.dataset.held; if ("inView" in v.dataset) play(v); } else { v.dataset.held = ""; v.pause(); }
+        render();
+      });
+      render();
+      // Tell the six toggles apart: each is described by its clip's caption.
+      const caption = v.closest("figure")?.querySelector("figcaption");
+      if (caption) { caption.id ||= `clip-${videos.indexOf(v)}`; toggle.setAttribute("aria-describedby", caption.id); }
+      v.parentElement.classList.add("has-toggle");
+      v.after(toggle);
+    }
+
     const seen = new IntersectionObserver((entries) => {
       for (const { target: v, isIntersecting } of entries) {
+        if (isIntersecting) v.dataset.inView = ""; else delete v.dataset.inView;
+        if ("held" in v.dataset) continue;
         if (isIntersecting) {
           v.preload = "auto";
-          v.play().catch(() => { v.controls = true; });
+          play(v);
         } else {
           v.pause();
         }

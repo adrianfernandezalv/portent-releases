@@ -63,14 +63,14 @@
           <div class="term-panel" role="tabpanel" id="hero-script" aria-labelledby="hero-script-tab">
             <div class="term-line">
               <span class="prompt" aria-hidden="true">$</span>
-              <code>curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash</code>
+              <code tabindex="0">curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash</code>
               <button class="copy" type="button" data-copy="curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash">Copy</button>
             </div>
           </div>
           <div class="term-panel" role="tabpanel" id="hero-brew" aria-labelledby="hero-brew-tab" hidden>
             <div class="term-line">
               <span class="prompt" aria-hidden="true">$</span>
-              <code>brew install adrianfernandezalv/tap/portent</code>
+              <code tabindex="0">brew install adrianfernandezalv/tap/portent</code>
               <button class="copy" type="button" data-copy="brew install adrianfernandezalv/tap/portent">Copy</button>
             </div>
           </div>
@@ -159,7 +159,7 @@
         <p>A notification when a session is waiting for a permission or an answer, or finishes a long turn. Click it and that exact session opens in Claude Desktop.</p>
       </div>
       <figure class="media glow" style="--gx: 30%; --gw: 34%; --gh: 50%">
-        <video muted loop playsinline preload="none" poster="assets/notify.webp" data-poster-light="assets/notify-light.webp" style="--focus: 70%" width="1248" height="992" data-src-light="assets/notify-light.mp4" data-autoplay>
+        <video muted loop playsinline preload="none" poster="assets/notify.webp" data-poster-light="assets/notify-light.webp" width="1248" height="992" data-src-light="assets/notify-light.mp4" data-autoplay>
           <source src="assets/notify.mp4" type="video/mp4">
         </video>
         <figcaption class="sr-only">ACME-482 asks for a permission and a notification arrives; after a click, recipe-box finishes its turn.</figcaption>
@@ -232,7 +232,7 @@
             <h3>Global shortcut</h3>
             <p>Open the panel from anywhere with a shortcut you pick in Settings.</p>
           </div>
-          <p class="keys" aria-label="For example Option Command P"><kbd>⌥</kbd><kbd>⌘</kbd><kbd>P</kbd></p>
+          <p class="keys"><span class="sr-only">For example Option Command P</span><kbd aria-hidden="true">⌥</kbd><kbd aria-hidden="true">⌘</kbd><kbd aria-hidden="true">P</kbd></p>
         </article>
         <article class="card span-2">
           <div class="card-copy">
@@ -271,7 +271,7 @@
         <div class="term-panel" role="tabpanel" id="i-script" aria-labelledby="i-script-tab">
           <div class="term-line">
             <span class="prompt" aria-hidden="true">$</span>
-            <code>curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash</code>
+            <code tabindex="0">curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash</code>
             <button class="copy" type="button" data-copy="curl -fsSL https://adrianfernandezalv.github.io/portent-releases/install.sh | bash">Copy</button>
           </div>
           <p class="term-out">Downloads the latest release into Applications, clears the quarantine flag and opens it. <a href="install.sh">Read the script</a> first.</p>
@@ -279,7 +279,7 @@
         <div class="term-panel" role="tabpanel" id="i-brew" aria-labelledby="i-brew-tab" hidden>
           <div class="term-line">
             <span class="prompt" aria-hidden="true">$</span>
-            <code>brew install adrianfernandezalv/tap/portent</code>
+            <code tabindex="0">brew install adrianfernandezalv/tap/portent</code>
             <button class="copy" type="button" data-copy="brew install adrianfernandezalv/tap/portent">Copy</button>
           </div>
           <p class="term-out">Installs the cask from the portent tap. Remove it with <code>brew uninstall portent</code>.</p>
@@ -351,6 +351,7 @@
   </div>
 </footer>
 
+<p class="sr-only" role="status" data-status></p>
 <script src="assets/site.js" defer></script>
 </body>
 </html>
