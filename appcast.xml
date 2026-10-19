@@ -5,6 +5,15 @@
     <link>https://adrianfernandezalv.github.io/portent-releases/appcast.xml</link>
     <language>en</language>
     <item>
+      <title>0.2.1</title>
+      <pubDate>Mon, 19 Oct 2026 06:33:07 +0000</pubDate>
+      <sparkle:version>36</sparkle:version>
+      <sparkle:shortVersionString>0.2.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>Click the orange globe on a port to show its QR code for your phone</li><li>Plan usage from claude.ai recovers on its own after your Mac wakes from a long sleep</li></ul>]]></description>
+      <enclosure url="https://github.com/adrianfernandezalv/portent-releases/releases/download/v0.2.1/Portent-0.2.1.dmg" length="3293261" type="application/octet-stream" sparkle:edSignature="2/EJeVJlPxghz6ejsgyGgOdozFXBjGxrZYB3MnPIbbXnYrThk1eKcCGmdaIdj904n7x7n13XtKsNCafqCUNDDA=="/>
+    </item>
+    <item>
       <title>0.2.0</title>
       <pubDate>Fri, 16 Oct 2026 13:03:15 +0000</pubDate>
       <sparkle:version>29</sparkle:version>
