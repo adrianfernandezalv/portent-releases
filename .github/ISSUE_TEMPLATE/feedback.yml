@@ -19,6 +19,16 @@ body:
     id: feedback
     attributes:
       label: Feedback
-      description: For bugs, include your portent version (Settings → About) and macOS version.
     validations:
       required: true
+  - type: input
+    id: version
+    attributes:
+      label: portent version
+      description: Settings → About, or `portent --version`.
+      placeholder: "1.0.0"
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "15.5 (Apple Silicon)"
