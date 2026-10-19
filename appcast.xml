@@ -5,6 +5,15 @@
     <link>https://getportent.pages.dev/appcast.xml</link>
     <language>en</language>
     <item>
+      <title>1.0.0</title>
+      <pubDate>Mon, 19 Oct 2026 11:26:38 +0000</pubDate>
+      <sparkle:version>58</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>portent is now paid: try everything free for 7 days, then buy it once for €4.99. Every future update is included, on up to 2 Macs.</li><li>Updating from a free version starts your 7-day trial today. Nothing changes until it ends.</li><li>Buy and enter your key in Settings › License, or right from the panel when the trial ends. To move it to another Mac, click Deactivate first, or free it from the customer portal.</li><li>In the trial&#x27;s last two days a banner in the panel reminds you. After that the panel locks behind a Buy card, notifications pause, and the `portent` command only answers help and version.</li><li>portent checks your license with Polar about once a week and keeps working offline for up to 30 days.</li></ul>]]></description>
+      <enclosure url="https://github.com/adrianfernandezalv/portent-releases/releases/download/v1.0.0/Portent-1.0.0.dmg" length="4924771" type="application/octet-stream" sparkle:edSignature="5cCvd384j81cxdmR+GthaCgXdUeoKF4ebLhGlFTRcQREUJSHE5D9PJ0ihWRDZvPbShbVpic2tLnKPEFGooSFDg=="/>
+    </item>
+    <item>
       <title>0.3.0</title>
       <pubDate>Mon, 19 Oct 2026 08:23:27 +0000</pubDate>
       <sparkle:version>48</sparkle:version>
