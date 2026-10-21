@@ -466,7 +466,7 @@ main { overflow-x: hidden; overflow-x: clip; }
   border-radius: 24px;
   box-shadow: 0 0 0 1px var(--line), 0 24px 60px -18px rgba(10, 132, 255, 0.45), 0 10px 30px -10px rgba(0, 0, 0, 0.6);
 }
-.closing h2 { font-size: clamp(2.2rem, 4.8vw, 3.6rem); letter-spacing: -0.035em; line-height: 1.04; max-width: 14ch; }
+.closing h1, .closing h2 { font-size: clamp(2.2rem, 4.8vw, 3.6rem); letter-spacing: -0.035em; line-height: 1.04; max-width: 14ch; }
 
 /* Footer */
 .foot { border-top: 1px solid var(--line); padding-block: 28px; }

@@ -3,22 +3,160 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>portent: dev servers, agent sessions and Claude usage in your menu bar</title>
+<title>portent: Claude Code usage, dev servers and agent sessions in your Mac menu bar</title>
 <meta name="description" content="A macOS menu bar app for developers running AI coding agents: Claude plan usage per account, every dev server and who started it, and every live session.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0e0f12" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-<meta property="og:title" content="portent">
+<meta property="og:site_name" content="portent">
+<meta property="og:title" content="portent: Claude usage, dev servers and agent sessions in your Mac menu bar">
 <meta property="og:description" content="Dev servers, agent sessions and Claude plan usage, in the macOS menu bar.">
 <meta property="og:url" content="https://getportent.pages.dev/">
 <meta property="og:image" content="https://getportent.pages.dev/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="629">
+<meta property="og:image:alt" content="The portent panel in the macOS menu bar: Claude plan usage, dev servers and live agent sessions.">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://getportent.pages.dev/">
 <script>if (location.hostname.endsWith("github.io")) location.replace("https://getportent.pages.dev/" + location.hash)</script>
 <link rel="icon" href="assets/icon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/icon-256.png">
 <link rel="preload" href="assets/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
+<!-- Structured data. The FAQPage copies the #faq answers word for word: change both together. -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareApplication",
+ "name": "portent",
+ "url": "https://getportent.pages.dev/",
+ "description": "A macOS menu bar app for developers running AI coding agents: Claude plan usage per account, every dev server and who started it, and every live session.",
+ "applicationCategory": "DeveloperApplication",
+ "operatingSystem": "macOS 14 or later",
+ "image": "https://getportent.pages.dev/assets/icon-256.png",
+ "screenshot": "https://getportent.pages.dev/assets/og.jpg",
+ "downloadUrl": "https://github.com/adrianfernandezalv/portent-releases/releases/latest/download/Portent.dmg",
+ "offers": {
+  "@type": "Offer",
+  "price": "4.99",
+  "priceCurrency": "EUR",
+  "url": "https://buy.polar.sh/polar_cl_0Yomr2RCzoWUPCz62oWM3jkEizFzVckIsO1J90zNuvW"
+ }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What do I need?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A Mac on macOS 14 Sonoma or later, Apple silicon or Intel. Plan usage works with the account Claude Code is signed into, and with any claude.ai accounts you sign in to inside portent."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which agents does it know about?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Sessions from Claude Code and Claude Desktop. Dev servers show whether a Claude session, Docker or you started them."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How does the free trial work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Install portent and everything works for 7 days, no key or card needed. In the last two days a banner in the panel reminds you. After the 7th day the panel locks behind a Buy card, notifications stop and the portent command only answers help and version, until you enter a license key. Updating from a free 0.x build starts the trial then."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How much is it, and what do I get?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "€4.99, once. You get every future update, on up to 2 Macs. Buy it here; the key arrives by email, and you paste it in Settings › License or in the card on the locked panel."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I move my license to another Mac?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A key works on 2 Macs at a time. On the Mac you're leaving, open Settings › License and click Deactivate, then enter the key on the new one. If that Mac is gone, free it from the customer portal."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "I lost my license key.",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Sign in to the customer portal with the email you bought it with: your key, your Macs and your receipts are there."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I get a refund?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, within 14 days of buying, no questions asked. Write to the contact on your receipt email and the refund goes back to the card you paid with. Polar sells portent as the merchant of record, so your order, invoice and receipts are in the customer portal."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it work offline?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. portent checks the license with Polar when you enter the key and then about once a week. If it can't reach Polar, it keeps working. Only after 30 days without reaching Polar does it ask you to connect once to confirm the license; your key stays, and there's nothing to buy again."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it send my data anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. portent reads ports, processes and session files on your Mac. It only goes online to read your plan usage and status from Claude, to check your license with Polar, and to fetch updates and a small table of model context sizes from this site. There's no portent account: Polar only knows the email you bought with. Update checks are counted per day and version, with no ID or IP stored, and the site counts visits without cookies."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can my coding agent use it?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, through the portent command. Every command takes --json and works without the app running. Add a line like “Run portent ls --json to see which dev servers and ports are in use” to your CLAUDE.md, and Claude Code checks before it starts another server."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will it stop something I didn't ask it to?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. portent stops a server only when you click Stop, and never stops projects you protect. When ports share a process, it tells you which ones stop together."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Why does macOS warn me the first time?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "portent is self-signed, not notarized. The install script and Homebrew clear the warning for you; from the disk image, use Open Anyway in Privacy & Security once for the image and once for the app."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I uninstall it?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Quit portent from the panel and move it to the Trash, or run brew uninstall portent if you installed it with Homebrew."
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
