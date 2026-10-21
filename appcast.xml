@@ -5,6 +5,15 @@
     <link>https://getportent.pages.dev/appcast.xml</link>
     <language>en</language>
     <item>
+      <title>1.0.2</title>
+      <pubDate>Wed, 21 Oct 2026 06:52:57 +0000</pubDate>
+      <sparkle:version>64</sparkle:version>
+      <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[<ul><li>portent no longer asks for your Keychain password to show Claude usage.</li><li>Fixed the panel occasionally reopening as a separate window instead of the menu bar popover.</li></ul>]]></description>
+      <enclosure url="https://github.com/adrianfernandezalv/portent-releases/releases/download/v1.0.2/Portent-1.0.2.dmg" length="4930454" type="application/octet-stream" sparkle:edSignature="vIYgjMqOXIbpofsBhspsDYyGIS/+z2YJ1koqdslqdR3Ro7hnimooZ3bprFBQ6Gi0Kyp/pR/3zAegC/ZXWFd6Bw=="/>
+    </item>
+    <item>
       <title>1.0.1</title>
       <pubDate>Tue, 20 Oct 2026 08:43:02 +0000</pubDate>
       <sparkle:version>60</sparkle:version>
