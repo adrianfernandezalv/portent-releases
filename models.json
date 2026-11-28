@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-16",
+  "updated": "2026-11-28",
   "tiers": [
     200000,
     1000000
@@ -12,6 +12,10 @@
     },
     {
       "prefix": "claude-fable-5-1",
+      "context": 1000000
+    },
+    {
+      "prefix": "claude-fable-5-2",
       "context": 1000000
     },
     {
